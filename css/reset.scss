@@ -1,0 +1,19 @@
+*, body{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "DM Sans", system-ui;
+    box-sizing: border-box;
+    color: $darkblack;
+}
+a{
+    text-decoration: none;
+}
+
+h1, h2, h3, h4{
+    letter-spacing: 0.05rem;
+}
+p{
+    letter-spacing: 0.05rem;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,108 @@
+@mixin section-width-8 {
+    margin: 10vh auto;
+    width: 80vw;
+}
+
+@mixin paragraph-2 {
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: $lightgray;
+    line-height: 1.8rem;
+    letter-spacing: 0;
+}
+
+@mixin heading-1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+}
+
+@mixin filter-blue {
+    filter: brightness(0) saturate(100%) invert(42%) sepia(97%) saturate(2073%) hue-rotate(202deg) brightness(99%) contrast(99%);
+}
+
+@mixin filter-white {
+    filter: brightness(0) saturate(100%) invert(83%) sepia(87%) saturate(49%) hue-rotate(83deg) brightness(116%) contrast(94%);
+}
+
+@mixin section-heading {
+    text-align: center;
+
+    h1{
+        @include heading-1;
+        margin-bottom: 1vh;
+    }
+    p{
+        @include paragraph();
+        margin: 0 20vw;
+    }
+    
+}
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+@mixin flex-col-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    flex-direction: column;  
+}
+@mixin flex-row-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    flex-direction: row;  
+}
+@mixin flex-row-space-between {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;    
+}
+
+@mixin flex-row-space-around {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;    
+}
+
+@mixin flex-right {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+@mixin flex-col-align-end {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+@mixin flex-row-align-end {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+@mixin flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin paragraph {
+    font-size: 1.1rem;
+    font-weight: 200;
+    color: $lightgray;
+    line-height: 1.8rem;
+    letter-spacing: 0;
+}
+
+
