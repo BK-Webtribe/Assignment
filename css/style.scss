@@ -66,8 +66,17 @@ header {
             margin: 0;
             position: relative;
 
+            input[name="slider"] {
+                display: none;
+            }
+            
+            input#slide1:checked ~ .slides .slide:nth-child(1),
+            input#slide2:checked ~ .slides .slide:nth-child(2),
+            input#slide3:checked ~ .slides .slide:nth-child(3) {
+                display: block;
+            }
+
             .mask {
-                -webkit-mask-image: url(../Images/svg/slider-shape.svg);
                   mask-image: url(../Images/svg/slider-shape.svg);
                   mask-repeat: no-repeat ;
                   mask-position: top;
@@ -80,122 +89,136 @@ header {
                     overflow: hidden;
                   }
               }
-              .slider_text{
-                position: absolute;
-                top: 22vh;
-                left: 10vw;
-                width: 28vw;
 
-                h1{
-                    font-size: 5rem;
-                    text-transform: capitalize;
-                    font-weight: 600;
-                }
-                h4{
-                    font-weight: 400;
-                    text-transform: uppercase;
-                    letter-spacing: .1rem;
-                    font-size: 1rem;
-                }
-              }
-              .slider_button{
+              .slides {
                 display: flex;
-                margin-top: 2rem;
-                
-                button{
-                    @include flex-center;
-                    padding: 1rem 2rem;
-                    margin: 0;
-                    border-radius: 2rem;
-                    border: 0;
-                    margin-right: 1rem;
-                    font-size: 1.1rem;
-                    background-color:$blue;
-                    color: white;
+                transition: transform 0.5s ease-in-out;
 
-                    svg{
-                        width: 1.3rem;
-                        height: 1.3rem;
-                    }
-                }
-                :nth-child(2){
-                    padding: 1rem;
-                    background-color: white;
-                }
-              }
-              .slider_details{
-                @include flex-col-align-end;
-                position: absolute;
-                right: 0;
-                bottom: 0;
-                background-image: url(../Images/svg/slider-details-shape.svg);
-                background-position: bottom;
-                background-repeat: no-repeat;
-                background-size: contain;
-                width: 29vw;
-                height: 22vh;
-                
-                
-                button{
-                    margin-top: 3vh;
-                    margin-right: 2.5rem;
-                    width: 16.5vw;
-                    text-align: left;
-                    font-size: 1.5rem;
-                    position: relative;
-                    background: none;
-                    border: none;
-
-                    &::after{
-                        content: "";
+                .slide{
+                    display: none;
+                    
+                    .slider_text{
                         position: absolute;
-                        background-image: url(../Images/svg/arrow-right.svg);
-                        background-size: contain;
-                        background-repeat: no-repeat;
-                        width: 2vw;
-                        height: 2vh;
-                        right: 0;
-                        top: .5vh;
-                        z-index: 1;
-                    }
-                }
-                .slider_details_image_text{
-                    display: flex;
-                    margin-top: 2.8rem;
-                    width: 26.6vw;
-
-                    .slider_details_image{
-                        display: flex;
-                        margin-right: 1vw;
-
-                        img{
-                            width: 5rem;
-                            height: 5rem;
-                            border: .3rem solid $lightergray;
-                            border-radius: 3rem;
-                            margin-left: -1rem;
-                            position: relative;
-                            z-index: 1;
+                        top: 22vh;
+                        left: 10vw;
+                        width: 28vw;
+        
+                        h1{
+                            font-size: 5rem;
+                            text-transform: capitalize;
+                            font-weight: 600;
                         }
-                    }
-                    .slider_details_text{
-                        margin-right: 2rem;
-                        margin-left: 1rem;
-
-                        p{
+                        h4{
+                            font-weight: 400;
+                            text-transform: uppercase;
+                            letter-spacing: .1rem;
                             font-size: 1rem;
-                            line-height: 1.2rem;
-                            color: $lightgray;
-                            font-weight: 300;
-                            
-                            strong{
-                                font-size: 1.2rem;
-                                line-height: 2rem;
+                        }
+                      }
+                      .slider_button{
+                        display: flex;
+                        margin-top: 2rem;
+                        
+                        button{
+                            @include flex-center;
+                            padding: 1rem 2rem;
+                            margin: 0;
+                            border-radius: 2rem;
+                            border: 0;
+                            margin-right: 1rem;
+                            font-size: 1.1rem;
+                            background-color:$blue;
+                            color: white;
+        
+                            svg{
+                                width: 1.3rem;
+                                height: 1.3rem;
                             }
                         }
-                    }
-                }
+                        :nth-child(2){
+                            padding: 1rem;
+                            background-color: white;
+                        }
+                      }
+                      .slider_details{
+                        @include flex-col-align-end;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        background-image: url(../Images/svg/slider-details-shape.svg);
+                        background-position: bottom;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 29vw;
+                        height: 22vh;
+                        
+                        
+                        button{
+                            margin-top: 3vh;
+                            margin-right: 2.5rem;
+                            width: 16.5vw;
+                            text-align: left;
+                            font-size: 1.5rem;
+                            position: relative;
+                            background: none;
+                            border: none;
+        
+                            &::after{
+                                content: "";
+                                position: absolute;
+                                background-image: url(../Images/svg/arrow-right.svg);
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                width: 2vw;
+                                height: 2vh;
+                                right: 0;
+                                top: .5vh;
+                                z-index: 1;
+                            }
+                        }
+                        .slider_details_image_text{
+                            display: flex;
+                            margin-top: 2.8rem;
+                            width: 26.6vw;
+        
+                            .slider_details_image{
+                                display: flex;
+                                margin-right: 1vw;
+        
+                                img{
+                                    width: 5rem;
+                                    height: 5rem;
+                                    border: .3rem solid $lightergray;
+                                    border-radius: 3rem;
+                                    margin-left: -1rem;
+                                    position: relative;
+                                    z-index: 1;
+                                }
+                            }
+                            .slider_details_text{
+                                margin-right: 2rem;
+                                margin-left: 1rem;
+        
+                                p{
+                                    font-size: 1rem;
+                                    line-height: 1.2rem;
+                                    color: $lightgray;
+                                    font-weight: 300;
+                                    
+                                    strong{
+                                        font-size: 1.2rem;
+                                        line-height: 2rem;
+                                    }
+                                }
+                            }
+                        }
+                      }
+                  }
               }
+              
+              
+              
+              
               .controller{
                 position: absolute;
                 top: 20vh;
@@ -225,7 +248,7 @@ header {
                         margin-bottom: 0;
                     }
                     
-                    a{
+                    label{
                         @include flex-center;
                         font-size: 1.5rem;
                         width: 4rem;

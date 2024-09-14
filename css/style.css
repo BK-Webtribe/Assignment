@@ -86,9 +86,17 @@ header .booking_button button {
   margin: 0;
   position: relative;
 }
+.upfold .slider input[name=slider] {
+  display: none;
+}
+.upfold .slider input#slide1:checked ~ .slides .slide:nth-child(1),
+.upfold .slider input#slide2:checked ~ .slides .slide:nth-child(2),
+.upfold .slider input#slide3:checked ~ .slides .slide:nth-child(3) {
+  display: block;
+}
 .upfold .slider .mask {
   -webkit-mask-image: url(../Images/svg/slider-shape.svg);
-  mask-image: url(../Images/svg/slider-shape.svg);
+          mask-image: url(../Images/svg/slider-shape.svg);
   -webkit-mask-repeat: no-repeat;
           mask-repeat: no-repeat;
   -webkit-mask-position: top;
@@ -101,28 +109,35 @@ header .booking_button button {
   width: 90vw;
   overflow: hidden;
 }
-.upfold .slider .slider_text {
+.upfold .slider .slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.upfold .slider .slides .slide {
+  display: none;
+}
+.upfold .slider .slides .slide .slider_text {
   position: absolute;
   top: 22vh;
   left: 10vw;
   width: 28vw;
 }
-.upfold .slider .slider_text h1 {
+.upfold .slider .slides .slide .slider_text h1 {
   font-size: 5rem;
   text-transform: capitalize;
   font-weight: 600;
 }
-.upfold .slider .slider_text h4 {
+.upfold .slider .slides .slide .slider_text h4 {
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   font-size: 1rem;
 }
-.upfold .slider .slider_button {
+.upfold .slider .slides .slide .slider_button {
   display: flex;
   margin-top: 2rem;
 }
-.upfold .slider .slider_button button {
+.upfold .slider .slides .slide .slider_button button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,15 +150,15 @@ header .booking_button button {
   background-color: #2A86FF;
   color: white;
 }
-.upfold .slider .slider_button button svg {
+.upfold .slider .slides .slide .slider_button button svg {
   width: 1.3rem;
   height: 1.3rem;
 }
-.upfold .slider .slider_button :nth-child(2) {
+.upfold .slider .slides .slide .slider_button :nth-child(2) {
   padding: 1rem;
   background-color: white;
 }
-.upfold .slider .slider_details {
+.upfold .slider .slides .slide .slider_details {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -157,7 +172,7 @@ header .booking_button button {
   width: 29vw;
   height: 22vh;
 }
-.upfold .slider .slider_details button {
+.upfold .slider .slides .slide .slider_details button {
   margin-top: 3vh;
   margin-right: 2.5rem;
   width: 16.5vw;
@@ -167,7 +182,7 @@ header .booking_button button {
   background: none;
   border: none;
 }
-.upfold .slider .slider_details button::after {
+.upfold .slider .slides .slide .slider_details button::after {
   content: "";
   position: absolute;
   background-image: url(../Images/svg/arrow-right.svg);
@@ -179,16 +194,16 @@ header .booking_button button {
   top: 0.5vh;
   z-index: 1;
 }
-.upfold .slider .slider_details .slider_details_image_text {
+.upfold .slider .slides .slide .slider_details .slider_details_image_text {
   display: flex;
   margin-top: 2.8rem;
   width: 26.6vw;
 }
-.upfold .slider .slider_details .slider_details_image_text .slider_details_image {
+.upfold .slider .slides .slide .slider_details .slider_details_image_text .slider_details_image {
   display: flex;
   margin-right: 1vw;
 }
-.upfold .slider .slider_details .slider_details_image_text .slider_details_image img {
+.upfold .slider .slides .slide .slider_details .slider_details_image_text .slider_details_image img {
   width: 5rem;
   height: 5rem;
   border: 0.3rem solid #F9F9FB;
@@ -197,17 +212,17 @@ header .booking_button button {
   position: relative;
   z-index: 1;
 }
-.upfold .slider .slider_details .slider_details_image_text .slider_details_text {
+.upfold .slider .slides .slide .slider_details .slider_details_image_text .slider_details_text {
   margin-right: 2rem;
   margin-left: 1rem;
 }
-.upfold .slider .slider_details .slider_details_image_text .slider_details_text p {
+.upfold .slider .slides .slide .slider_details .slider_details_image_text .slider_details_text p {
   font-size: 1rem;
   line-height: 1.2rem;
   color: #768396;
   font-weight: 300;
 }
-.upfold .slider .slider_details .slider_details_image_text .slider_details_text p strong {
+.upfold .slider .slides .slide .slider_details .slider_details_image_text .slider_details_text p strong {
   font-size: 1.2rem;
   line-height: 2rem;
 }
@@ -238,7 +253,7 @@ header .booking_button button {
 .upfold .slider .controller ul li:last-child {
   margin-bottom: 0;
 }
-.upfold .slider .controller ul li a {
+.upfold .slider .controller ul li label {
   display: flex;
   justify-content: center;
   align-items: center;
