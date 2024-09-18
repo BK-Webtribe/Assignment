@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+  box-sizing: border-box;
+}
+
+body {
+  background: #e5f6ff;
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: #555;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.wrapper {
+  margin: 85px 0;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 0 -10px;
+}
+.slider .items {
+  display: flex;
+  width: 100%;
+}
+.slider .items .item {
+  padding: 0 15px;
+  width: 33%;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+@media screen and (max-width: 700px) {
+  .slider .items .item {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .slider .items .item {
+    width: 100%;
+  }
+}
+.slider .items .item .child {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #fafaff;
+  border: 1px solid #9494ff;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAOklEQVQoU43MSwoAMAgD0eT+h7ZYaOlHo7N+DNHL2HAGgBWcyGcKbqTghTL4oQiG6IUpOqFEC5bI4QD8PAoKd9j4XwAAAABJRU5ErkJggg==);
+}
+.slider .items .item .footer {
+  background: #9494ff;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 50px;
+}
+.slider .buttons #left, .slider .buttons #right {
+  position: absolute;
+  cursor: pointer;
+  top: 40%;
+  background: #500ea5;
+  color: #fff;
+  padding: 10px;
+}
+.slider .buttons #left {
+  left: 10px;
+}
+.slider .buttons #right {
+  right: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>A Simple Carousal Slider</h1>
+        <div class="container">
+          <div class="slider">
+            <div class="items" style="transform: translate3d(0px, 0px, 0px); transition: transform 400ms ease 0s">
+              <div class="item">
+                <div class="child">1</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">2</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">3</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">4</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">5</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">6</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">7</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">8</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">9</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">10</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">11</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">12</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">13</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">14</div>
+                <div class="footer"></div>
+              </div>
+              <div class="item">
+                <div class="child">15</div>
+                <div class="footer"></div>
+              </div>
+            </div>
+            <div class="buttons">
+              <div id="left">⇠</div>
+              <div id="right">⇢</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+</body>
+<script src="js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+let slider = $(".slider .items");
+let items = $(".slider .items .item .child");
+const leftButton = $("#left");
+const rightButton = $("#right");
+
+let scrollPos = 0;
+if (scrollPos >= 0) leftButton.hide();
+
+leftButton.click(function () {
+scrollPos += slider.width();
+if (scrollPos >= 0) {
+  leftButton.hide();
+  scrollPos = 0;
+}
+rightButton.show();
+slider.css("transform", "translate3d(" + scrollPos + "px, 0px, 0px)");
+});
+
+rightButton.click((e) => {
+scrollPos -= slider.width();
+if (scrollPos <= -(items.innerHeight() - 2) * 15) rightButton.hide();
+leftButton.show();
+slider.css("transform", "translate3d(" + scrollPos + "px, 0px, 0px)");
+});
+});
+
+  </script>
+</html>

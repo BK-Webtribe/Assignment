@@ -111,10 +111,15 @@ header .booking_button button {
 }
 .upfold .slider .slides {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 .upfold .slider .slides .slide {
   display: none;
+  width: 100%;
+  height: 100%;
 }
 .upfold .slider .slides .slide .slider_text {
   position: absolute;
@@ -263,10 +268,54 @@ header .booking_button button {
   border: 3px solid white;
   border-radius: 4rem;
   color: white;
+  background-color: transparent;
+  transition: background-color 1s, color 1s;
+}
+.upfold .slider .controller ul li label:hover {
+  background-color: white;
+  color: #2A86FF;
 }
 .upfold .slider .controller ul li:first-child a {
   background-color: white;
   color: #0F0F0F;
+}
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.upfold #slide1:checked ~ .slides .slide {
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+}
+.upfold #slide2:checked ~ .slides .slide {
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+}
+.upfold #slide3:checked ~ .slides .slide {
+  -webkit-animation: fade 1s;
+          animation: fade 1s;
+}
+@-webkit-keyframes upfold-transition {
+  0% {
+    transform: translateX();
+  }
+}
+@keyframes upfold-transition {
+  0% {
+    transform: translateX();
+  }
 }
 
 .media_and_bookings {
@@ -360,8 +409,13 @@ header .booking_button button {
 }
 
 .carousel {
-  margin: 10vh auto;
-  width: 80vw;
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .carousel .carousel_header {
   display: flex;
@@ -406,37 +460,33 @@ header .booking_button button {
   height: 1.1rem;
   margin-top: 0.2rem;
 }
-.carousel ul {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
+.carousel .carousal-items {
+  width: 100%;
+  position: relative;
 }
-.carousel ul li {
-  width: 25vw;
-  display: flex;
-  flex-direction: column;
+.carousel .carousal-items .carousal-item {
+  padding: 0 15px;
 }
-.carousel ul li img {
+.carousel .carousal-items .carousal-item img {
   width: 100%;
   border-radius: 2rem;
 }
-.carousel ul li .slider_content {
+.carousel .carousal-items .carousal-item .slider_content {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   margin: 1.6rem;
 }
-.carousel ul li .slider_content .slider_content_text {
+.carousel .carousal-items .carousal-item .slider_content .slider_content_text {
   display: flex;
   flex-direction: column;
 }
-.carousel ul li .slider_content .slider_content_text h3 {
+.carousel .carousal-items .carousal-item .slider_content .slider_content_text h3 {
   font-size: 1.7rem;
   font-weight: 500;
 }
-.carousel ul li .slider_content .slider_content_text h5 {
+.carousel .carousal-items .carousal-item .slider_content .slider_content_text h5 {
   font-weight: 300;
   font-size: 1rem;
   margin-left: 1.5rem;
@@ -444,7 +494,7 @@ header .booking_button button {
   margin-top: 0.5rem;
   color: #768396;
 }
-.carousel ul li .slider_content .slider_content_text h5::before {
+.carousel .carousal-items .carousal-item .slider_content .slider_content_text h5::before {
   content: "";
   position: absolute;
   background-image: url(../images/svg/location_solid.svg);
@@ -456,18 +506,18 @@ header .booking_button button {
   height: 1rem;
   left: -1.5rem;
 }
-.carousel ul li .slider_content .slider_rating {
+.carousel .carousal-items .carousal-item .slider_content .slider_rating {
   background-color: #2A86FF;
   display: flex;
   padding: 0.8rem 1.2rem;
   border-radius: 2rem;
 }
-.carousel ul li .slider_content .slider_rating svg {
+.carousel .carousal-items .carousal-item .slider_content .slider_rating svg {
   width: 1rem;
   fill: white;
   margin-right: 0.5rem;
 }
-.carousel ul li .slider_content .slider_rating h5 {
+.carousel .carousal-items .carousal-item .slider_content .slider_rating h5 {
   font-size: 1rem;
   color: white;
   font-weight: 500;
@@ -502,20 +552,25 @@ header .booking_button button {
   flex-direction: row;
   align-items: flex-end;
   margin-top: 5vh;
+  height: 55vh;
 }
 .info_boxes ul li {
   background-color: #F9F9FB;
   padding: 4vw;
   width: 33.3vw;
+  height: 30vh;
   border-radius: 3rem 3rem 3rem 3rem;
   position: relative;
+  transition: background-color 0.3s ease, height 1s, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .info_boxes ul li h3 {
   font-size: 1.8rem;
   font-weight: 500;
+  transition: color 0.3s ease;
 }
 .info_boxes ul li p, .info_boxes ul li button {
   display: none;
+  transition: opacity 0.3s ease;
 }
 .info_boxes ul li p {
   font-weight: 200;
@@ -562,9 +617,11 @@ header .booking_button button {
 }
 .info_boxes ul li .info_box_image {
   display: none;
+  transition: opacity 0.3s ease;
 }
 .info_boxes ul li.active, .info_boxes ul li:hover {
   background-color: #2A86FF;
+  height: 55vh;
 }
 .info_boxes ul li.active h3, .info_boxes ul li:hover h3 {
   color: white;
@@ -573,6 +630,7 @@ header .booking_button button {
 .info_boxes ul li.active p, .info_boxes ul li.active button, .info_boxes ul li:hover p, .info_boxes ul li:hover button {
   display: block;
   color: white;
+  opacity: 1;
 }
 .info_boxes ul li.active button, .info_boxes ul li:hover button {
   background-color: transparent;
@@ -874,6 +932,7 @@ header .booking_button button {
   background-color: #F9F9FB;
   margin-right: 2rem;
   border-radius: 3rem;
+  transition: background-color 0.5s;
 }
 .testimony ul li .review {
   display: flex;

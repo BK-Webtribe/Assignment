@@ -92,10 +92,15 @@ header {
 
               .slides {
                 display: flex;
-                transition: transform 0.5s ease-in-out;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 100%;
 
                 .slide{
                     display: none;
+                    width: 100%;
+                    height: 100%;
                     
                     .slider_text{
                         position: absolute;
@@ -256,6 +261,13 @@ header {
                         border: 3px solid white;
                         border-radius: 4rem;
                         color: white;
+                        background-color: transparent;
+                        transition: background-color 1s, color 1s;
+
+                        &:hover{
+                            background-color: white;
+                            color: $blue;
+                        }
                     }
                     &:first-child a{
                         background-color: white;
@@ -265,7 +277,31 @@ header {
               }
               
         }
+    
+        // @keyframes fade {
+        //     0%, 100% { opacity: 0; }
+        //     10%, 90% { opacity: 1; }
+        // }
 
+        @keyframes fade {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        // Apply fade animation to active slides
+        #slide1:checked ~ .slides .slide{
+            animation: fade 1s;
+        }
+        #slide2:checked ~ .slides .slide{
+            animation: fade 1s;
+        }
+        #slide3:checked ~ .slides .slide{
+            animation: fade 1s;
+        }
+
+        @keyframes upfold-transition {
+            0% {transform: translateX()}
+        }
     
 }
 .media_and_bookings{
@@ -312,6 +348,7 @@ header {
         
     }
 }
+
 
 .social_media_icons{
     @include flex-row-space-between;
@@ -374,7 +411,14 @@ header {
     }
 }
 .carousel{
-    @include section-width-8;
+    width: 80%;
+    margin: 0 auto;
+    // overflow: hidden;
+    position: relative;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 
     .carousel_header{
         @include flex-row-space-between;
@@ -413,14 +457,15 @@ header {
                     margin-top: .2rem;
                 }
             }
+            
         }
     }
-    ul{
-        @include flex-row-space-between;
+    .carousal-items {
+        width: 100%;
+        position: relative;
 
-        li{
-            width: 25vw;
-            @include flex-col;
+        .carousal-item {
+            padding: 0 15px;
 
             img{
                 width: 100%;
@@ -494,21 +539,26 @@ header {
     ul{
         @include flex-row-align-end;
         margin-top: 5vh;
+        height: 55vh;
 
         li{
             background-color: $lightergray;
             padding: 4vw;
             width: 33.3vw;
+            height: 30vh;
             border-radius: 3rem 3rem 3rem 3rem;
             position: relative;
+            transition: background-color 0.3s ease, height 1s, transform 0.3s ease, box-shadow 0.3s ease;
 
             h3{
                 font-size: 1.8rem;
                 font-weight: 500;
+                transition: color 0.3s ease;
             }
 
             p, button{
                 display: none;
+                transition: opacity 0.3s ease;
             }
             p{
                 font-weight: 200;
@@ -556,10 +606,13 @@ header {
             }
             .info_box_image{
                 display: none;
+                transition: opacity 0.3s ease;
             }
 
             &.active, &:hover{
                 background-color: $blue;
+                height: 55vh;
+
                 h3{
                     color: white;
                     margin-bottom: 3vh;
@@ -567,6 +620,7 @@ header {
                 p, button{
                     display: block;
                     color: white;
+                    opacity: 1;
                 } 
 
                 button{
@@ -831,6 +885,7 @@ header {
             background-color: $lightergray;
             margin-right: 2rem;
             border-radius: 3rem;
+            transition: background-color 0.5s;
 
             .review{
                 @include flex-col;
